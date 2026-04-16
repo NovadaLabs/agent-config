@@ -31,6 +31,7 @@
 - [Step 6 — Install AgentRecall (Memory System)](#en-agentrecall)
 - [Step 7 — Receive Future Team Updates](#en-updates)
 - [What's Included](#en-whats-included)
+- [📂 Samples & Explanations (Read This Before Writing Your Config)](#en-samples)
 - [Which AI Agent Do You Use?](#en-multiagent)
 - [🤖 Using Codex? Setup Guide](#en-codex)
 - [FAQ](#en-faq)
@@ -314,6 +315,26 @@ Always-on standards: development workflow, git commits, performance, security, t
 
 ---
 
+<a id="en-samples"></a>
+## 📂 Samples & Explanations
+
+> **Read these before writing your own config.** They show what a real, production `CLAUDE.md` and rules files look like — with annotations explaining why each section is written the way it is.
+
+| File | What it shows |
+|---|---|
+| [`samples/CLAUDE.sample.md`](samples/CLAUDE.sample.md) | A complete, filled-in `CLAUDE.md` with WHY annotations for every section |
+| [`samples/rules/agent-orchestration.annotated.md`](samples/rules/agent-orchestration.annotated.md) | Five Pillars, multi-agent design, parallel dispatch — with failure-mode explanations |
+| [`samples/rules/development-workflow.annotated.md`](samples/rules/development-workflow.annotated.md) | Why Research → Plan → TDD → Review → Commit is the mandatory order |
+| [`samples/rules/performance.annotated.md`](samples/rules/performance.annotated.md) | Model routing and context window management — why these save money and improve quality |
+
+**How to use them:**
+1. Read `CLAUDE.sample.md` to understand the structure before writing your own
+2. Copy sections you need into `~/.claude/CLAUDE.md`
+3. Replace the content with your real projects and preferences
+4. Read the annotated rules to understand the reasoning, not just the rules
+
+---
+
 <a id="en-multiagent"></a>
 ## Which AI Agent Do You Use?
 
@@ -470,6 +491,7 @@ Build it, test it, then open a Pull Request on `NovadaLabs/claude`. Ask a teamma
 - [第 6 步 — 安装 AgentRecall（记忆系统）](#cn-agentrecall)
 - [第 7 步 — 接收团队后续更新](#cn-updates)
 - [包含哪些内容](#cn-whats-included)
+- [📂 示例与说明（写配置前必读）](#cn-samples)
 - [你用哪个 AI 代理？](#cn-multiagent)
 - [🤖 使用 Codex？配置指南](#cn-codex)
 - [常见问题](#cn-faq)
@@ -753,6 +775,26 @@ cp -r ~/.claude-team/rules ~/.claude/
 
 ---
 
+<a id="cn-samples"></a>
+## 📂 示例与说明
+
+> **写自己的配置之前，请先读这些文件。** 它们展示了真实生产环境下 `CLAUDE.md` 和规则文件的样子，并对每个部分的写法给出了 WHY 注解。
+
+| 文件 | 内容 |
+|---|---|
+| [`samples/CLAUDE.sample.md`](samples/CLAUDE.sample.md) | 完整填写的 `CLAUDE.md` 真实示例，每个部分都有 WHY 注解 |
+| [`samples/rules/agent-orchestration.annotated.md`](samples/rules/agent-orchestration.annotated.md) | 五大支柱、多代理设计、并行派发——附失败案例说明 |
+| [`samples/rules/development-workflow.annotated.md`](samples/rules/development-workflow.annotated.md) | 为什么研究→规划→TDD→审查→提交是必须按顺序执行的 |
+| [`samples/rules/performance.annotated.md`](samples/rules/performance.annotated.md) | 模型路由与上下文窗口管理——为什么这些决策节省成本并提升质量 |
+
+**如何使用：**
+1. 先读 `CLAUDE.sample.md`，理解结构再动笔写自己的
+2. 将你需要的部分复制到 `~/.claude/CLAUDE.md`
+3. 用你的真实项目和偏好替换内容
+4. 阅读带注解的规则，理解背后的逻辑，而不只是照搬规则
+
+---
+
 <a id="cn-multiagent"></a>
 ## 你用哪个 AI 代理？
 
@@ -909,6 +951,7 @@ cp ~/.claude-team/CLAUDE.template.md ~/.codex/AGENTS.md
 - [Passo 6 — Instale o AgentRecall (Sistema de Memória)](#pt-agentrecall)
 - [Passo 7 — Receba Atualizações Futuras da Equipe](#pt-updates)
 - [O Que Está Incluído](#pt-whats-included)
+- [📂 Exemplos e Explicações (Leia Antes de Escrever sua Config)](#pt-samples)
 - [Qual Agente de IA Você Usa?](#pt-multiagent)
 - [🤖 Usando Codex? Guia de Configuração](#pt-codex)
 - [Perguntas Frequentes](#pt-faq)
@@ -1189,6 +1232,26 @@ Skills são conjuntos de instruções que dizem ao Claude como fazer tarefas esp
 
 ### Regras (8 arquivos)
 Padrões sempre ativos: fluxo de desenvolvimento, commits git, performance, segurança, testes.
+
+---
+
+<a id="pt-samples"></a>
+## 📂 Exemplos e Explicações
+
+> **Leia estes arquivos antes de escrever sua própria config.** Eles mostram como é um `CLAUDE.md` e arquivos de regras em produção real — com anotações explicando o porquê de cada seção ser escrita daquela forma.
+
+| Arquivo | O que mostra |
+|---|---|
+| [`samples/CLAUDE.sample.md`](samples/CLAUDE.sample.md) | Um `CLAUDE.md` completo e preenchido com anotações WHY para cada seção |
+| [`samples/rules/agent-orchestration.annotated.md`](samples/rules/agent-orchestration.annotated.md) | Cinco Pilares, design multi-agente, despacho paralelo — com explicações de falhas |
+| [`samples/rules/development-workflow.annotated.md`](samples/rules/development-workflow.annotated.md) | Por que Pesquisa → Plano → TDD → Revisão → Commit é a ordem obrigatória |
+| [`samples/rules/performance.annotated.md`](samples/rules/performance.annotated.md) | Roteamento de modelos e gestão da janela de contexto — por que isso economiza dinheiro e melhora a qualidade |
+
+**Como usar:**
+1. Leia `CLAUDE.sample.md` para entender a estrutura antes de escrever a sua
+2. Copie as seções que precisar para `~/.claude/CLAUDE.md`
+3. Substitua o conteúdo com seus projetos e preferências reais
+4. Leia as regras anotadas para entender o raciocínio, não só as regras em si
 
 ---
 
