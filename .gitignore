@@ -1,0 +1,29 @@
+# Personal layer — never commit these
+CLAUDE.md
+memory/
+journal/
+settings.json
+settings.local.json
+
+# Claude Code runtime files
+*.jsonl
+cache/
+stats-cache.json
+session-env/
+sessions/
+telemetry/
+paste-cache/
+tasks/
+plans/
+backups/
+projects/
+file-history/
+shell-snapshots/
+34424.json
+mcp-needs-auth-cache.json
+remote-settings.json
+ide/
+chrome/
+plugins/
+teams/
+commands/

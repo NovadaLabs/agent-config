@@ -1,0 +1,53 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/session-start-sync.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agentrecall hook-start 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agentrecall hook-correction 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/session-stop-sync.sh"
+          },
+          {
+            "type": "command",
+            "command": "agentrecall hook-end 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  },
+  "mcpServers": {
+    "_comment": "Add your MCP servers here. See https://docs.anthropic.com/en/docs/claude-code/mcp"
+  }
+}
