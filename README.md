@@ -32,6 +32,7 @@
 - [Step 7 — Receive Future Team Updates](#en-updates)
 - [What's Included](#en-whats-included)
 - [Which AI Agent Do You Use?](#en-multiagent)
+- [🤖 Using Codex? Setup Guide](#en-codex)
 - [FAQ](#en-faq)
 
 ---
@@ -325,6 +326,103 @@ Always-on standards: development workflow, git commits, performance, security, t
 
 ---
 
+<a id="en-codex"></a>
+## 🤖 Using Codex? Setup Guide
+
+> **If you use OpenAI Codex CLI instead of Claude Code, follow these steps.** Steps 1–2 (Fork + Clone) are identical. Everything from Step 3 onward is different.
+
+### What's different about Codex
+
+| | Claude Code | OpenAI Codex CLI |
+|---|---|---|
+| Config file | `~/.claude/CLAUDE.md` | `AGENTS.md` (in project root or `~/.codex/`) |
+| Skills system | Native — 95 skills load automatically | No native loader — rules must be embedded |
+| Memory | AgentRecall via hooks | Built-in conversation history |
+| Install | `npm i -g @anthropic-ai/claude-code` | `npm i -g @openai/codex` |
+
+### Step 3 (Codex) — Install Codex CLI
+
+```
+npm install -g @openai/codex
+```
+
+Set your OpenAI API key:
+```
+export OPENAI_API_KEY=your-key-here
+```
+To make this permanent, add that line to `~/.zshrc` (Mac) or `~/.bashrc` (Linux/Windows WSL).
+
+Verify:
+```
+codex --version
+```
+
+### Step 4 (Codex) — Copy Rules Into Your Project
+
+Codex reads `AGENTS.md` from your project root. Copy the team rules there:
+
+```
+# Go to your project folder first
+cd ~/Projects/your-project
+
+# Create AGENTS.md from the template
+cp ~/.claude-team/CLAUDE.template.md ./AGENTS.md
+```
+
+Then copy the content of the rules you want into your `AGENTS.md`. The most useful ones are:
+```
+cat ~/.claude-team/rules/development-workflow.md >> ./AGENTS.md
+cat ~/.claude-team/rules/git-workflow.md >> ./AGENTS.md
+cat ~/.claude-team/rules/coding-style.md >> ./AGENTS.md
+```
+
+### Step 5 (Codex) — Using Skills with Codex
+
+Codex has no automatic skill loader. To use a skill, copy its content into your prompt or into `AGENTS.md`.
+
+**To use a skill once:**
+```
+# Read the skill and paste its contents into your Codex prompt
+cat ~/.claude-team/skills/deep-research/skill.md
+```
+
+**To make a skill always-on**, append it to your `AGENTS.md`:
+```
+cat ~/.claude-team/skills/tdd-workflow/skill.md >> ./AGENTS.md
+```
+
+**Most useful skills for Codex users:**
+- `tdd-workflow` — test-driven development discipline
+- `api-design` — API design patterns
+- `security-review` — security checklist
+- `coding-standards` — code quality rules
+
+### Step 6 (Codex) — Global Config (Optional)
+
+To apply rules to ALL your projects (not just one), create a global config:
+```
+mkdir -p ~/.codex
+cp ~/.claude-team/CLAUDE.template.md ~/.codex/AGENTS.md
+```
+Edit `~/.codex/AGENTS.md` the same way as in Step 5 of the Claude setup.
+
+### Codex Tool Name Mapping
+
+Skills reference Claude Code tool names. When a skill says to use a tool, translate:
+
+| Skill says (Claude) | Use this instead (Codex) |
+|---|---|
+| `Read` tool | `read_file` |
+| `Write` tool | `write_file` |
+| `Edit` tool | `edit_file` or `patch_file` |
+| `Bash` tool | `shell` |
+| `Grep` tool | `search_files` |
+| `Glob` tool | `list_files` |
+| `Skill` tool | Not available — copy skill content manually |
+| `Agent` tool | Not available — Codex is single-agent |
+
+---
+
 <a id="en-faq"></a>
 ## FAQ
 
@@ -373,6 +471,7 @@ Build it, test it, then open a Pull Request on `NovadaLabs/claude`. Ask a teamma
 - [第 7 步 — 接收团队后续更新](#cn-updates)
 - [包含哪些内容](#cn-whats-included)
 - [你用哪个 AI 代理？](#cn-multiagent)
+- [🤖 使用 Codex？配置指南](#cn-codex)
 - [常见问题](#cn-faq)
 
 ---
@@ -666,6 +765,103 @@ cp -r ~/.claude-team/rules ~/.claude/
 
 ---
 
+<a id="cn-codex"></a>
+## 🤖 使用 Codex？配置指南
+
+> **如果你使用 OpenAI Codex CLI 而不是 Claude Code，请按以下步骤操作。** 第 1-2 步（Fork + 克隆）完全相同，第 3 步起有所不同。
+
+### Codex 与 Claude Code 的区别
+
+| | Claude Code | OpenAI Codex CLI |
+|---|---|---|
+| 配置文件 | `~/.claude/CLAUDE.md` | `AGENTS.md`（项目根目录或 `~/.codex/`） |
+| 技能系统 | 原生支持——95 个技能自动加载 | 无原生加载器——规则需手动嵌入 |
+| 记忆 | AgentRecall（通过 hooks） | 内置对话历史 |
+| 安装 | `npm i -g @anthropic-ai/claude-code` | `npm i -g @openai/codex` |
+
+### 第 3 步（Codex）— 安装 Codex CLI
+
+```
+npm install -g @openai/codex
+```
+
+设置你的 OpenAI API Key：
+```
+export OPENAI_API_KEY=你的key
+```
+要使其永久生效，将这行添加到 `~/.zshrc`（Mac）或 `~/.bashrc`（Linux/Windows WSL）。
+
+验证：
+```
+codex --version
+```
+
+### 第 4 步（Codex）— 将规则复制到项目中
+
+Codex 从项目根目录读取 `AGENTS.md`。将团队规则复制到该文件：
+
+```
+# 先进入你的项目目录
+cd ~/Projects/你的项目
+
+# 从模板创建 AGENTS.md
+cp ~/.claude-team/CLAUDE.template.md ./AGENTS.md
+```
+
+然后将你需要的规则内容追加到 `AGENTS.md`。最常用的：
+```
+cat ~/.claude-team/rules/development-workflow.md >> ./AGENTS.md
+cat ~/.claude-team/rules/git-workflow.md >> ./AGENTS.md
+cat ~/.claude-team/rules/coding-style.md >> ./AGENTS.md
+```
+
+### 第 5 步（Codex）— 在 Codex 中使用技能
+
+Codex 没有自动技能加载器。要使用某个技能，需要将其内容复制到 prompt 中或 `AGENTS.md` 里。
+
+**临时使用技能：**
+```
+# 读取技能内容，粘贴到 Codex prompt 中
+cat ~/.claude-team/skills/deep-research/skill.md
+```
+
+**让技能永久生效**，追加到 `AGENTS.md`：
+```
+cat ~/.claude-team/skills/tdd-workflow/skill.md >> ./AGENTS.md
+```
+
+**Codex 用户最常用的技能：**
+- `tdd-workflow` — 测试驱动开发纪律
+- `api-design` — API 设计模式
+- `security-review` — 安全检查清单
+- `coding-standards` — 代码质量规范
+
+### 第 6 步（Codex）— 全局配置（可选）
+
+要将规则应用到**所有项目**（而不仅是单个项目），创建全局配置：
+```
+mkdir -p ~/.codex
+cp ~/.claude-team/CLAUDE.template.md ~/.codex/AGENTS.md
+```
+编辑 `~/.codex/AGENTS.md`，方式与 Claude 配置的第 5 步相同。
+
+### Codex 工具名称对照表
+
+技能文件中引用 Claude Code 的工具名称。当技能说使用某个工具时，按下表转换：
+
+| 技能中写的（Claude） | Codex 中对应使用 |
+|---|---|
+| `Read` 工具 | `read_file` |
+| `Write` 工具 | `write_file` |
+| `Edit` 工具 | `edit_file` 或 `patch_file` |
+| `Bash` 工具 | `shell` |
+| `Grep` 工具 | `search_files` |
+| `Glob` 工具 | `list_files` |
+| `Skill` 工具 | 不可用——手动复制技能内容 |
+| `Agent` 工具 | 不可用——Codex 是单代理模式 |
+
+---
+
 <a id="cn-faq"></a>
 ## 常见问题
 
@@ -714,6 +910,7 @@ cp -r ~/.claude-team/rules ~/.claude/
 - [Passo 7 — Receba Atualizações Futuras da Equipe](#pt-updates)
 - [O Que Está Incluído](#pt-whats-included)
 - [Qual Agente de IA Você Usa?](#pt-multiagent)
+- [🤖 Usando Codex? Guia de Configuração](#pt-codex)
 - [Perguntas Frequentes](#pt-faq)
 
 ---
@@ -1004,6 +1201,103 @@ Padrões sempre ativos: fluxo de desenvolvimento, commits git, performance, segu
 | **OpenAI Codex** | `AGENTS.md` na raiz do projeto | Copie skills para `~/.codex/skills/`, substitua nomes de tools |
 | **Gemini CLI** | `GEMINI.md` | Use `activate_skill` em vez da tool `Skill` |
 | **GitHub Copilot** | `AGENTS.md` | Sem sistema de skills nativo — use apenas regras |
+
+---
+
+<a id="pt-codex"></a>
+## 🤖 Usando Codex? Guia de Configuração
+
+> **Se você usa o OpenAI Codex CLI em vez do Claude Code, siga estes passos.** Os Passos 1–2 (Fork + Clone) são idênticos. Tudo a partir do Passo 3 é diferente.
+
+### O que é diferente no Codex
+
+| | Claude Code | OpenAI Codex CLI |
+|---|---|---|
+| Arquivo de config | `~/.claude/CLAUDE.md` | `AGENTS.md` (raiz do projeto ou `~/.codex/`) |
+| Sistema de skills | Nativo — 95 skills carregam automaticamente | Sem loader nativo — regras devem ser embutidas |
+| Memória | AgentRecall via hooks | Histórico de conversa integrado |
+| Instalar | `npm i -g @anthropic-ai/claude-code` | `npm i -g @openai/codex` |
+
+### Passo 3 (Codex) — Instale o Codex CLI
+
+```
+npm install -g @openai/codex
+```
+
+Configure sua chave de API da OpenAI:
+```
+export OPENAI_API_KEY=sua-chave-aqui
+```
+Para tornar permanente, adicione essa linha ao `~/.zshrc` (Mac) ou `~/.bashrc` (Linux/Windows WSL).
+
+Verifique:
+```
+codex --version
+```
+
+### Passo 4 (Codex) — Copie as Regras para seu Projeto
+
+O Codex lê `AGENTS.md` da raiz do seu projeto. Copie as regras da equipe para lá:
+
+```
+# Entre na sua pasta de projeto primeiro
+cd ~/Projects/seu-projeto
+
+# Crie AGENTS.md a partir do template
+cp ~/.claude-team/CLAUDE.template.md ./AGENTS.md
+```
+
+Depois, copie as regras que quiser para o `AGENTS.md`. As mais úteis:
+```
+cat ~/.claude-team/rules/development-workflow.md >> ./AGENTS.md
+cat ~/.claude-team/rules/git-workflow.md >> ./AGENTS.md
+cat ~/.claude-team/rules/coding-style.md >> ./AGENTS.md
+```
+
+### Passo 5 (Codex) — Usando Skills com o Codex
+
+O Codex não tem carregador automático de skills. Para usar uma skill, copie o conteúdo para o seu prompt ou para o `AGENTS.md`.
+
+**Para usar uma skill uma vez:**
+```
+# Leia o conteúdo da skill e cole no seu prompt do Codex
+cat ~/.claude-team/skills/deep-research/skill.md
+```
+
+**Para ativar uma skill permanentemente**, adicione ao `AGENTS.md`:
+```
+cat ~/.claude-team/skills/tdd-workflow/skill.md >> ./AGENTS.md
+```
+
+**Skills mais úteis para usuários do Codex:**
+- `tdd-workflow` — disciplina de desenvolvimento orientado a testes
+- `api-design` — padrões de design de API
+- `security-review` — checklist de segurança
+- `coding-standards` — regras de qualidade de código
+
+### Passo 6 (Codex) — Config Global (Opcional)
+
+Para aplicar regras a **todos os seus projetos** (não só um), crie uma config global:
+```
+mkdir -p ~/.codex
+cp ~/.claude-team/CLAUDE.template.md ~/.codex/AGENTS.md
+```
+Edite `~/.codex/AGENTS.md` da mesma forma que no Passo 5 da configuração do Claude.
+
+### Mapeamento de Nomes de Ferramentas do Codex
+
+As skills referenciam nomes de ferramentas do Claude Code. Quando uma skill mencionar uma ferramenta, use a equivalência:
+
+| A skill diz (Claude) | Use no Codex |
+|---|---|
+| Ferramenta `Read` | `read_file` |
+| Ferramenta `Write` | `write_file` |
+| Ferramenta `Edit` | `edit_file` ou `patch_file` |
+| Ferramenta `Bash` | `shell` |
+| Ferramenta `Grep` | `search_files` |
+| Ferramenta `Glob` | `list_files` |
+| Ferramenta `Skill` | Não disponível — copie o conteúdo manualmente |
+| Ferramenta `Agent` | Não disponível — Codex é modo agente único |
 
 ---
 
