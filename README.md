@@ -20,6 +20,15 @@
 
 > **What is this?** A ready-to-use AI agent configuration kit for NovadaLabs team members. It gives your AI assistant (Claude, Codex, or others) a shared brain — the same skills, rules, and memory system the whole team uses.
 
+### Highlights: Our Internal Tools
+
+| Tool | What it does | Status |
+|------|-------------|--------|
+| **[AgentRecall](https://github.com/Goldentrii/AgentRecall)** | Persistent memory for AI agents — journal, brain palace, awareness, cross-project insights. Every session learns from the last. | v3.4.4 on npm (`agent-recall-mcp`) |
+| **AAM (Agent Autonomous Mode)** | Overnight multi-agent orchestration — budget control, Telegram alerts, nightly dreaming that consolidates knowledge and catches errors while you sleep. | Internal, KR-4 |
+
+Both are pre-configured in this kit. AgentRecall installs in Step 6. AAM is available to advanced users via the `/aam` skill.
+
 **Table of Contents**
 - [Before You Start — What You Need](#en-prereqs)
 - [Step 0 — What Is a Fork and Why Do I Need One?](#en-fork-explained)
@@ -183,7 +192,7 @@ cp ~/.claude-team/settings.template.json ~/.claude/settings.json
 > ✅ **You're done when:** `ls ~/.claude/skills` shows a list of folder names
 
 **What did we just copy?**
-- `skills/` — 95 instruction sets for specific tasks (research, coding, deployment...)
+- `skills/` — 117 instruction sets for specific tasks (research, coding, deployment, design, documents...)
 - `agents/` — 25 specialized sub-assistants Claude can call on
 - `rules/` — 8 always-on team standards for development workflow
 - `hooks/` — scripts that auto-run when Claude sessions start and stop
@@ -284,19 +293,22 @@ cp -r ~/.claude-team/rules ~/.claude/
 <a id="en-whats-included"></a>
 ## What's Included
 
-### Skills (95 total)
+### Skills (117 total)
 Skills are instruction sets that tell Claude how to do specific tasks. Invoke with `/skill-name` in Claude Code.
 
 | Category | Key skills |
 |---|---|
-| Agent & Orchestration | `agent-recall`, `agent-browser`, `agentic-engineering`, `autonomous-loops`, `team-builder` |
-| Development | `tdd-workflow`, `api-design`, `backend-patterns`, `frontend-patterns`, `database-migrations` |
+| Agent & Orchestration | `agent-recall`, `agent-browser`, `agentic-engineering`, `autonomous-loops`, `team-builder`, `taskflow` |
+| Development | `tdd-workflow`, `api-design`, `backend-patterns`, `frontend-patterns`, `database-migrations`, `coding-agent` |
 | Research | `deep-research`, `market-research`, `competitive-teardown`, `exa-search` |
-| Website & Content | `website-genome`, `awwwards-landing-page`, `content-engine`, `article-writing` |
-| Infrastructure | `deployment-patterns`, `docker-patterns`, `postgres-patterns`, `mcp-server-patterns` |
+| Website & Content | `website-genome`, `awwwards-landing-page`, `content-engine`, `article-writing`, `web-artifacts-builder` |
+| Design & UI | `frontend-design`, `canvas-design`, `brand-guidelines`, `theme-factory`, `algorithmic-art` |
+| Documents | `pdf`, `pptx`, `docx`, `xlsx`, `doc-coauthoring` |
+| Infrastructure | `deployment-patterns`, `docker-patterns`, `postgres-patterns`, `mcp-server-patterns`, `mcp-builder` |
 | Security | `security-review`, `security-scan` |
 | Product & Strategy | `product-discovery`, `product-strategist`, `investor-materials`, `roadmap-communicator` |
 | Testing | `e2e-testing`, `webapp-testing`, `ai-regression-testing`, `verification-loop` |
+| Platform & Tools | `github`, `gh-issues`, `discord`, `slack`, `notion`, `clawhub`, `weather` |
 
 ### Agents (25 total)
 
@@ -340,7 +352,7 @@ Always-on standards: development workflow, git commits, performance, security, t
 
 | If you use... | Config file | How skills work |
 |---|---|---|
-| **Claude Code** | `~/.claude/CLAUDE.md` | All 95 skills work out of the box |
+| **Claude Code** | `~/.claude/CLAUDE.md` | All 117 skills work out of the box |
 | **OpenAI Codex** | `AGENTS.md` in your project root | Copy skills to `~/.codex/skills/`, replace Claude tool names |
 | **Gemini CLI** | `GEMINI.md` | Use `activate_skill` instead of `Skill` tool |
 | **GitHub Copilot** | `AGENTS.md` | No native skill system — rules only |
@@ -479,6 +491,15 @@ Build it, test it, then open a Pull Request on `NovadaLabs/claude`. Ask a teamma
 # 🇨🇳 中文
 
 > **这是什么？** NovadaLabs 团队成员专用的 AI 代理配置套件。它让你的 AI 助手（Claude、Codex 等）拥有团队共享的技能库、规则体系和记忆系统。
+
+### 重点：我们的内部工具
+
+| 工具 | 功能 | 状态 |
+|------|------|------|
+| **[AgentRecall](https://github.com/Goldentrii/AgentRecall)** | AI 代理的持久记忆系统 — 日志、脑宫殿、意识、跨项目洞察。每次会话都从上次学习。 | v3.4.4 npm (`agent-recall-mcp`) |
+| **AAM（代理自主模式）** | 隔夜多代理编排 — 预算控制、Telegram 警报、夜间做梦功能（自动整理知识并在你睡觉时捕获错误）。 | 内部使用，KR-4 |
+
+两者都已在此套件中预配置。AgentRecall 在第 6 步安装。AAM 通过 `/aam` 技能对高级用户开放。
 
 **目录**
 - [开始前 — 你需要什么](#cn-prereqs)
@@ -643,7 +664,7 @@ cp ~/.claude-team/settings.template.json ~/.claude/settings.json
 > ✅ **完成标志：** `ls ~/.claude/skills` 显示技能文件夹列表
 
 **我们刚复制了什么？**
-- `skills/` — 95 个特定任务的指令集（研究、编码、部署……）
+- `skills/` — 117 个特定任务的指令集（研究、编码、部署、设计、文档……）
 - `agents/` — 25 个 Claude 可以调用的专用子助手
 - `rules/` — 8 个始终生效的团队开发规范
 - `hooks/` — 会话启动和停止时自动运行的脚本
@@ -744,19 +765,22 @@ cp -r ~/.claude-team/rules ~/.claude/
 <a id="cn-whats-included"></a>
 ## 包含哪些内容
 
-### 技能（共 95 个）
+### 技能（共 117 个）
 技能是告诉 Claude 如何完成特定任务的指令集。在 Claude Code 中通过 `/技能名称` 调用。
 
 | 分类 | 主要技能 |
 |---|---|
-| 代理与编排 | `agent-recall`、`agent-browser`、`agentic-engineering`、`autonomous-loops`、`team-builder` |
-| 开发 | `tdd-workflow`、`api-design`、`backend-patterns`、`frontend-patterns`、`database-migrations` |
+| 代理与编排 | `agent-recall`、`agent-browser`、`agentic-engineering`、`autonomous-loops`、`team-builder`、`taskflow` |
+| 开发 | `tdd-workflow`、`api-design`、`backend-patterns`、`frontend-patterns`、`database-migrations`、`coding-agent` |
 | 研究 | `deep-research`、`market-research`、`competitive-teardown`、`exa-search` |
-| 网站与内容 | `website-genome`、`awwwards-landing-page`、`content-engine`、`article-writing` |
-| 基础设施 | `deployment-patterns`、`docker-patterns`、`postgres-patterns`、`mcp-server-patterns` |
+| 网站与内容 | `website-genome`、`awwwards-landing-page`、`content-engine`、`article-writing`、`web-artifacts-builder` |
+| 设计与 UI | `frontend-design`、`canvas-design`、`brand-guidelines`、`theme-factory`、`algorithmic-art` |
+| 文档处理 | `pdf`、`pptx`、`docx`、`xlsx`、`doc-coauthoring` |
+| 基础设施 | `deployment-patterns`、`docker-patterns`、`postgres-patterns`、`mcp-server-patterns`、`mcp-builder` |
 | 安全 | `security-review`、`security-scan` |
 | 产品与策略 | `product-discovery`、`product-strategist`、`investor-materials`、`roadmap-communicator` |
 | 测试 | `e2e-testing`、`webapp-testing`、`ai-regression-testing`、`verification-loop` |
+| 平台与工具 | `github`、`gh-issues`、`discord`、`slack`、`notion`、`clawhub`、`weather` |
 
 ### 代理（共 25 个）
 
@@ -800,7 +824,7 @@ cp -r ~/.claude-team/rules ~/.claude/
 
 | 如果你使用… | 配置文件 | 技能如何工作 |
 |---|---|---|
-| **Claude Code** | `~/.claude/CLAUDE.md` | 95 个技能开箱即用 |
+| **Claude Code** | `~/.claude/CLAUDE.md` | 117 个技能开箱即用 |
 | **OpenAI Codex** | 项目根目录的 `AGENTS.md` | 将技能复制到 `~/.codex/skills/`，替换工具名称 |
 | **Gemini CLI** | `GEMINI.md` | 用 `activate_skill` 替代 `Skill` 工具 |
 | **GitHub Copilot** | `AGENTS.md` | 无原生技能系统——仅使用规则 |
@@ -939,6 +963,15 @@ cp ~/.claude-team/CLAUDE.template.md ~/.codex/AGENTS.md
 # 🇧🇷 Português Brasileiro
 
 > **O que é isso?** Um kit de configuração de agente de IA pronto para uso pelos membros da equipe NovadaLabs. Dá ao seu assistente de IA (Claude, Codex ou outros) um cérebro compartilhado — as mesmas skills, regras e sistema de memória que toda a equipe usa.
+
+### Destaques: Nossas Ferramentas Internas
+
+| Ferramenta | O que faz | Status |
+|------------|-----------|--------|
+| **[AgentRecall](https://github.com/Goldentrii/AgentRecall)** | Memória persistente para agentes de IA — diário, palácio mental, consciência, insights entre projetos. Cada sessão aprende com a anterior. | v3.4.4 no npm (`agent-recall-mcp`) |
+| **AAM (Agent Autonomous Mode)** | Orquestração multi-agente noturna — controle de orçamento, alertas Telegram, sonho noturno que consolida conhecimento e captura erros enquanto você dorme. | Interno, KR-4 |
+
+Ambos vêm pré-configurados neste kit. AgentRecall é instalado no Passo 6. AAM está disponível para usuários avançados via a skill `/aam`.
 
 **Índice**
 - [Antes de Começar — O Que Você Precisa](#pt-prereqs)
@@ -1103,7 +1136,7 @@ cp ~/.claude-team/settings.template.json ~/.claude/settings.json
 > ✅ **Concluído quando:** `ls ~/.claude/skills` mostrar uma lista de pastas
 
 **O que acabamos de copiar?**
-- `skills/` — 95 conjuntos de instruções para tarefas específicas (pesquisa, código, deploy...)
+- `skills/` — 117 conjuntos de instruções para tarefas específicas (pesquisa, código, deploy, design, documentos...)
 - `agents/` — 25 sub-assistentes especializados que o Claude pode acionar
 - `rules/` — 8 padrões sempre ativos da equipe para desenvolvimento
 - `hooks/` — scripts que rodam automaticamente quando sessões do Claude iniciam e terminam
@@ -1204,19 +1237,22 @@ cp -r ~/.claude-team/rules ~/.claude/
 <a id="pt-whats-included"></a>
 ## O Que Está Incluído
 
-### Skills (95 no total)
+### Skills (117 no total)
 Skills são conjuntos de instruções que dizem ao Claude como fazer tarefas específicas. Use com `/nome-da-skill` no Claude Code.
 
 | Categoria | Skills principais |
 |---|---|
-| Agentes e Orquestração | `agent-recall`, `agent-browser`, `agentic-engineering`, `autonomous-loops`, `team-builder` |
-| Desenvolvimento | `tdd-workflow`, `api-design`, `backend-patterns`, `frontend-patterns`, `database-migrations` |
+| Agentes e Orquestração | `agent-recall`, `agent-browser`, `agentic-engineering`, `autonomous-loops`, `team-builder`, `taskflow` |
+| Desenvolvimento | `tdd-workflow`, `api-design`, `backend-patterns`, `frontend-patterns`, `database-migrations`, `coding-agent` |
 | Pesquisa | `deep-research`, `market-research`, `competitive-teardown`, `exa-search` |
-| Sites e Conteúdo | `website-genome`, `awwwards-landing-page`, `content-engine`, `article-writing` |
-| Infraestrutura | `deployment-patterns`, `docker-patterns`, `postgres-patterns`, `mcp-server-patterns` |
+| Sites e Conteúdo | `website-genome`, `awwwards-landing-page`, `content-engine`, `article-writing`, `web-artifacts-builder` |
+| Design e UI | `frontend-design`, `canvas-design`, `brand-guidelines`, `theme-factory`, `algorithmic-art` |
+| Documentos | `pdf`, `pptx`, `docx`, `xlsx`, `doc-coauthoring` |
+| Infraestrutura | `deployment-patterns`, `docker-patterns`, `postgres-patterns`, `mcp-server-patterns`, `mcp-builder` |
 | Segurança | `security-review`, `security-scan` |
 | Produto e Estratégia | `product-discovery`, `product-strategist`, `investor-materials`, `roadmap-communicator` |
 | Testes | `e2e-testing`, `webapp-testing`, `ai-regression-testing`, `verification-loop` |
+| Plataformas e Ferramentas | `github`, `gh-issues`, `discord`, `slack`, `notion`, `clawhub`, `weather` |
 
 ### Agentes (25 no total)
 
@@ -1260,7 +1296,7 @@ Padrões sempre ativos: fluxo de desenvolvimento, commits git, performance, segu
 
 | Se você usa... | Arquivo de config | Como as skills funcionam |
 |---|---|---|
-| **Claude Code** | `~/.claude/CLAUDE.md` | Todas as 95 skills funcionam imediatamente |
+| **Claude Code** | `~/.claude/CLAUDE.md` | Todas as 117 skills funcionam imediatamente |
 | **OpenAI Codex** | `AGENTS.md` na raiz do projeto | Copie skills para `~/.codex/skills/`, substitua nomes de tools |
 | **Gemini CLI** | `GEMINI.md` | Use `activate_skill` em vez da tool `Skill` |
 | **GitHub Copilot** | `AGENTS.md` | Sem sistema de skills nativo — use apenas regras |
